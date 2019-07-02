@@ -1,0 +1,21 @@
+<h1>{{ task.name }}</h1>
+
+<table>
+    <thead>
+        <tr>
+            <th>Estimated Duration</th>
+            <th>Importance</th>
+            <th>Due date</th>
+            <th>Done?</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>{{task.estimated_duration}}</td>
+            <td>{{task.importance}}</td>
+            <td>{{task.due_date}}</td>
+            <td>{% if task.done %}Yes{% else %}No{% endif %}</td>
+        </tr>
+    </tbody>
+</table>
+<a href="{% url 'home' %}">Take me back home</a>
