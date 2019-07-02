@@ -20,17 +20,16 @@ class TaskList(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        optimal_task_list = [
-            Task.objects.filter(done=False)
+        optimal_tasks = (
+            Task.objects
             .annotate(density=(
                 Cast('importance', FloatField())/Cast('estimated_duration', FloatField())
             ))
-            .order_by('-density')
-            .first()
-        ]
-        if optimal_task_list[0] == None:
-            optimal_task_list.pop()
-        context['optimal_task_list'] = optimal_task_list
+            .order_by('done', '-density')
+        )
+        if len(optimal_tasks) != 0:
+            context['first_task'] = optimal_tasks[0]
+        context['optimal_tasks'] = optimal_tasks
         return context
 
 class TaskDetail(DetailView):
