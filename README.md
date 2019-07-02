@@ -20,7 +20,7 @@ Set the environment variables. This project doesn't need high security so I've j
 
 ### Local database setup with sqlite3
 
-Make sure your virtual environment is activated, then:
+Make sure your virtual environment is activated, and you are in the directory containing manage.py, then:
 ```
 python manage.py migrate
 ```
@@ -31,14 +31,14 @@ If admin site css is missing, `python3.6 manage.py collectstatic`
 
 ### Run local server
 
-Make sure your virtual environment is activated, then:
+Make sure your virtual environment is activated, and you are in the directory containing manage.py, then:
 ```
 python manage.py runserver
 ```
 
 ### To enable the admin side of the site
 
-`cd` to rc4-mockup/projectname
+Make sure your virtual environment is activated, and you are in the directory containing manage.py, then:
 ```
 python manage.py createsuperuser
 ```
@@ -49,15 +49,13 @@ Define the required details for the admin account. Anyone who can edit the sourc
 
 ### Authentication
 
-If you need to enable user authentication, simply add the following line to receipt_generator/views.py:
+If you need to enable user authentication, simply add the following line to views.py:
 ```
 import from django.contrib.auth.decorators import login_required
 ```
 
 ...and add `@login_required` above any relevant view method. 
 
-Login as admin is required to add a new charity, using the admin site of the site. See [here](#to-enable-the-admin-side-of-the-site).
-
 ### Getting visibility on errors
 
-Set DEBUG=True in projectname/settings.py.
+Set DEBUG=True in settings.py.
