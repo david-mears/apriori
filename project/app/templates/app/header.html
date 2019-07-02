@@ -1,1 +1,5 @@
-<div class = "text-center"><h1><a href="{% url 'home' %}">a priori</a></h1></div>
+<div class = "text-center"><h1><a href="{% url 'home' %}?density={% if algorithm == 'density' %}1{% endif %}">a priori</a></h1>
+{% if algorithm == 'density' %}<h2>Current algorithm: density</h2>
+{% elif algorithm == 'shortest_processing_time' %}<h2>Current algorithm: Shortest Processing Time</h2>
+{% endif %}
+</div>

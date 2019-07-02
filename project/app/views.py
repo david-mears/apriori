@@ -20,16 +20,27 @@ class TaskList(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        optimal_tasks = (
-            Task.objects
-            .annotate(density=(
-                Cast('importance', FloatField())/Cast('estimated_duration', FloatField())
-            ))
-            .order_by('done', '-density')
-        )
-        if len(optimal_tasks) != 0:
-            context['first_task'] = optimal_tasks[0]
-        context['optimal_tasks'] = optimal_tasks
+        if self.request.GET.get('density') == '1':
+            context['algorithm'] = 'density'
+            optimal_tasks = (
+                Task.objects
+                .annotate(density=(
+                    Cast('importance', FloatField())/Cast('estimated_duration', FloatField())
+                ))
+                .order_by('done', '-density')
+            )
+            if len(optimal_tasks) != 0:
+                context['first_task_benchmark'] = optimal_tasks[0].density
+            context['optimal_tasks'] = optimal_tasks
+        else:
+            context['algorithm'] = 'shortest_processing_time'
+            optimal_tasks = (
+                Task.objects
+                .order_by('done', 'estimated_duration')
+            )
+            if len(optimal_tasks) != 0:
+                context['first_task_benchmark'] = optimal_tasks[0].estimated_duration
+            context['optimal_tasks'] = optimal_tasks
         return context
 
 class TaskDetail(DetailView):

@@ -3,17 +3,27 @@
 {% block page_content %}
 <hr>
 <blockquote class="blockquote text-center">
+    {% if algorithm != 'density' %}
+    <p>Imagine starting on Monday morning with a four-day project and a one-day project on your agenda. If you deliver the bigger project on Thursday afternoon (4 days elapsed) and then the small one on Friday afternoon (5 days elapsed), the clients will have waited a total of 4 + 5 = 9 days. If you reverse the order, however, you can finish the small project on Monday and the big one on Friday, with the clients waiting a total of only 1 + 5 = 6 days. It’s a full workweek for you either way, but now you’ve saved your clients three days of their combined time. Scheduling theorists call this metric the “sum of completion times.”</p>
+    <p>Minimizing the sum of completion times leads to a very simple optimal algorithm called Shortest Processing Time: always do the quickest task you can.</p>
+    {% else %}
     <p>The optimal strategy for minimizing the burden of tasks for a single machine, or person, is simple: divide
     the importance, or weight, of each task by how long it will take to finish, and then work in order from the highest resulting
     importance-per-unit-time (call it “density” if you like, to continue the weight metaphor) to the lowest.</p>
     <p>While it might be hard to assign a degree of importance to each one of your daily tasks, this strategy
     nonetheless offers a nice rule of thumb: only prioritize a task that takes twice as long if it’s twice as important.</p>
+    {% endif %}
 </blockquote>
 <footer class="blockquote-footer text-center">Adapted from <cite>Christian, Brian. Algorithms to Live By: The Computer Science of Human Decisions.</cite></footer>
 <hr>
 <h4 class = "text-center">Your optimal next task (and any equally optimal) is in green.</h3>
 
-<a class="badge badge-primary" href="{% url 'task-create' %}">New task</a>
+<a class="badge badge-pill badge-primary" href="{% url 'task-create' %}">New task</a>
+
+<a  class="badge badge-pill badge-info"
+    href="{% url 'home' %}{% if algorithm != 'density' %}?density=1{% endif %}">
+    Switch algorithm: order by {% if algorithm != 'density' %}density{% else %}shortest processing time{% endif %}
+</a>
 
 <table class="table">
     <thead>
@@ -28,7 +38,17 @@
     </thead>
     <tbody>
         {% for task in optimal_tasks %}
-                <tr {% if task.density == first_task.density and task.done != True %}class = "table-success"{% endif %}                >
+                <tr
+                    {% if algorithm == 'density' %}
+                        {% if task.density == first_task_benchmark and task.done == False %}
+                            class = "table-success"
+                        {% endif %}
+                    {% elif algorithm == 'shortest_processing_time' %}
+                        {% if task.estimated_duration == first_task_benchmark and task.done == False %}
+                            class = "table-success"
+                        {% endif %}    
+                    {% endif %}                
+                >
                     <td>{{task.name}}</td>
                     <td>{{task.estimated_duration}}</td>
                     <td>{{task.importance}}</td>
