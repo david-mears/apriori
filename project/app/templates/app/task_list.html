@@ -27,7 +27,21 @@
         </tr>
     </thead>
     <tbody>
-    {% for task in object_list %}
+        {% for task in optimal_task_list %}
+        <tr>
+            <td>{{task.name}}</td>
+            <td>{{task.estimated_duration}}</td>
+            <td>{{task.importance}}</td>
+            <td>{{task.due_date}}</td>
+            <td>{% if task.done %}Yes{% else %}No{% endif %}</td>
+            <td>
+                <a href="{% url 'task-detail' 2 %}">details</a>
+                <a href="{% url 'task-update' 2 %}">edit</a>
+                <a href="{% url 'task-delete' 2 %}">delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+        {% for task in object_list %}
         <tr>
             <td>{{task.name}}</td>
             <td>{{task.estimated_duration}}</td>
@@ -36,12 +50,12 @@
             <td>{% if task.done %}Yes{% else %}No{% endif %}</td>
 
             <td>
-                <a  href="{% url 'task-detail' task.id  %}">details</a>
-                <a  href="{% url 'task-update' task.id  %}">edit</a>
-                <a  href="{% url 'task-delete' task.id  %}">delete</a>
+                <a href="{% url 'task-detail' task.id %}">details</a>
+                <a href="{% url 'task-update' task.id %}">edit</a>
+                <a href="{% url 'task-delete' task.id %}">delete</a>
             </td>
         </tr>
-    {% endfor %}
+        {% endfor %}
     </tbody>
 </table>
 
