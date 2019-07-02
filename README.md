@@ -20,7 +20,7 @@ Set the environment variables. This project doesn't need high security so I've j
 
 ### Local database setup with sqlite3
 
-Make sure your virtual environment is activated, and you are in the directory containing manage.py, then:
+Make sure your virtual environment is activated, and you are in apriori/project, then:
 ```
 python manage.py migrate
 ```
@@ -31,14 +31,14 @@ If admin site css is missing, `python3.6 manage.py collectstatic`
 
 ### Run local server
 
-Make sure your virtual environment is activated, and you are in the directory containing manage.py, then:
+Make sure your virtual environment is activated, and you are in apriori/project, then:
 ```
 python manage.py runserver
 ```
 
 ### To enable the admin side of the site
 
-Make sure your virtual environment is activated, and you are in the directory containing manage.py, then:
+Make sure your virtual environment is activated, and you are in apriori/project, then:
 ```
 python manage.py createsuperuser
 ```
@@ -46,15 +46,6 @@ python manage.py createsuperuser
 Define the required details for the admin account. Anyone who can edit the source code of the website and deploy can create an admin account in this way.
 
 ## For further developing
-
-### Authentication
-
-If you need to enable user authentication, simply add the following line to views.py:
-```
-import from django.contrib.auth.decorators import login_required
-```
-
-...and add `@login_required` above any relevant view method. 
 
 ### Getting visibility on errors
 
