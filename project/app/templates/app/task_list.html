@@ -2,7 +2,17 @@
 
 {% block page_content %}
 
-<h2>Tasks</h2>
+<blockquote class="blockquote text-center">
+    <p>The optimal strategy for minimizing the burden of tasks for a single machine, or person, is simple: divide
+    the importance, or weight, of each task by how long it will take to finish, and then work in order from the highest resulting
+    importance-per-unit-time (call it “density” if you like, to continue the weight metaphor) to the lowest.</p>
+    <p>While it might be hard to assign a degree of importance to each one of your daily tasks, this strategy
+    nonetheless offers a nice rule of thumb: only prioritize a task that takes twice as long if it’s twice as important.</p>
+</blockquote>
+<footer class="blockquote-footer text-center">Adapted from <cite>Christian, Brian. Algorithms to Live By: The Computer Science of Human Decisions.</cite></footer>
+
+<h2 class = "text-center">Tasks</h2>
+<!-- <h3 class = "text-center">Your optimal next task is in green.</h3> -->
 
 <a class="badge badge-primary" href="{% url 'task-create' %}">New task</a>
 
