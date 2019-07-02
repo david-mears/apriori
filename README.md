@@ -4,6 +4,8 @@ Python Django project to optimize one-human scheduling, based on the single-mach
 
 Optimal prioritization is cool.
 
+![screenshot](apriori.png)
+
 ## Use
 
 ### Local installation
