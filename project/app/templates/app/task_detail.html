@@ -1,3 +1,7 @@
+{% extends "base.html" %}
+
+{% block page_content %}
+
 <h1>{{ task.name }}</h1>
 
 <table>
@@ -19,3 +23,6 @@
     </tbody>
 </table>
 <a href="{% url 'home' %}">Take me back home</a>
+
+{% endblock %}
+
