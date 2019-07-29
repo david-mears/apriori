@@ -29,7 +29,7 @@ python manage.py migrate
 
 This migrate command creates an empty database.
 
-If admin site css is missing, `python3.6 manage.py collectstatic`
+If admin site css is missing, `python manage.py collectstatic`
 
 ### Run local server
 
