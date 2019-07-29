@@ -18,7 +18,7 @@ pip install -r requirements.txt
 ```
 Check that the virtual environment is using python 3.6 or higher.
 
-Set the environment variables. This project doesn't need high security so I've just pasted the needed environment variable [here](https://pastebin.com/PA4KzX1a) to avoid security error messages and allow anyone to use the project. Assign APRIORI_SECRET_KEY to this value.
+Set the environment variables by creating .env at the root directory. This project doesn't need high security so I've just pasted the needed environment variable [here](https://pastebin.com/PA4KzX1a) to allow anyone to use the project. Assign APRIORI_SECRET_KEY to this value.
 
 ### Local database setup with sqlite3
 
