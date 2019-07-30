@@ -1,4 +1,3 @@
-from django.contrib.auth.decorators import login_required
 from django.db.models.functions import Cast
 from django.db.models import FloatField
 from django.forms import ModelForm
@@ -14,7 +13,6 @@ from .models import Task
 from .forms import TaskForm
 
 class TaskList(ListView): 
-    login_required = True
     model = Task
     fields = '__all__'
 
@@ -44,12 +42,10 @@ class TaskList(ListView):
         return context
 
 class TaskDetail(DetailView):
-    login_required = True
     model = Task
     fields = '__all__'
 
 class TaskCreate(CreateView): 
-    login_required = True
     model = Task
     form_class = TaskForm
 
@@ -58,12 +54,10 @@ class TaskCreate(CreateView):
         return super().form_valid(form)
 
 class TaskUpdate(UpdateView): 
-    login_required = True
     model = Task
     form_class = TaskForm
 
 class TaskDelete(DeleteView):
-    login_required = True
     model = Task
     fields = '__all__'
     success_url = reverse_lazy('home')
