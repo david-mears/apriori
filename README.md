@@ -16,7 +16,7 @@ cd apriori
 python -m venv path/to/new/virtual/environment
 pip install -r requirements.txt
 ```
-Check that the virtual environment is using python 3.6 or higher.
+Check that the virtual environment is using Python 3.6 or higher.
 
 Set the environment variables by creating .env at the root directory. This project doesn't need high security so I've just pasted the needed environment variable [here](https://pastebin.com/PA4KzX1a) to allow anyone to use the project. Assign APRIORI_SECRET_KEY to this value.
 
