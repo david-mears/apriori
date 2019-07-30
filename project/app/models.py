@@ -7,11 +7,6 @@ class Task(models.Model):
         "Task description",
         max_length=100,
     )
-    created_by = models.ForeignKey(
-        User,
-        on_delete=models.CASCADE,
-        editable=False,
-    )
     estimated_duration = models.IntegerField(
         "Estimated duration (integer field, decide on a unit yourself per your use-case)",
         blank=True,
