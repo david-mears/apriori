@@ -54,7 +54,7 @@
                     <td>{{task.importance}}</td>
                     <td>{{task.density}}</td>
                     <td>{{task.due_date}}</td>
-                    <td>{% if task.done %}Yes{% else %}No{% endif %}</td>
+                    <td>{% if task.done %}Yep{% else %}Nope{% endif %}</td>
                     <td>
                         <a href="{% url 'task-detail' task.id %}">details</a>
                         <a href="{% url 'task-update' task.id %}">edit</a>
